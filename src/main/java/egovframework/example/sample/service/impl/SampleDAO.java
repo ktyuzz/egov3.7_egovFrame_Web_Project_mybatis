@@ -21,7 +21,7 @@ import egovframework.example.sample.service.SampleDefaultVO;
 import egovframework.example.sample.service.SampleVO;
 
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
-
+import egovframework.rte.psl.dataaccess.EgovAbstractMapper;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -42,7 +42,7 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository("sampleDAO")
-public class SampleDAO extends EgovAbstractDAO {
+public class SampleDAO extends EgovAbstractMapper {
 
 	/**
 	 * 글을 등록한다.
@@ -50,8 +50,8 @@ public class SampleDAO extends EgovAbstractDAO {
 	 * @return 등록 결과
 	 * @exception Exception
 	 */
-	public String insertSample(SampleVO vo) throws Exception {
-		return (String) insert("sampleDAO.insertSample", vo);
+	public int insertSample(SampleVO vo) throws Exception {
+		return insert("insertSample", vo);
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class SampleDAO extends EgovAbstractDAO {
 	 * @exception Exception
 	 */
 	public void updateSample(SampleVO vo) throws Exception {
-		update("sampleDAO.updateSample", vo);
+		update("updateSample", vo);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class SampleDAO extends EgovAbstractDAO {
 	 * @exception Exception
 	 */
 	public void deleteSample(SampleVO vo) throws Exception {
-		delete("sampleDAO.deleteSample", vo);
+		delete("deleteSample", vo);
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class SampleDAO extends EgovAbstractDAO {
 	 * @exception Exception
 	 */
 	public SampleVO selectSample(SampleVO vo) throws Exception {
-		return (SampleVO) select("sampleDAO.selectSample", vo);
+		return selectOne("selectSample", vo);
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class SampleDAO extends EgovAbstractDAO {
 	 * @exception Exception
 	 */
 	public List<?> selectSampleList(SampleDefaultVO searchVO) throws Exception {
-		return list("sampleDAO.selectSampleList", searchVO);
+		return selectList("selectSampleList", searchVO);
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class SampleDAO extends EgovAbstractDAO {
 	 * @exception
 	 */
 	public int selectSampleListTotCnt(SampleDefaultVO searchVO) {
-		return (Integer) select("sampleDAO.selectSampleListTotCnt", searchVO);
+		return selectOne("selectSampleListTotCnt", searchVO);
 	}
 
 }
